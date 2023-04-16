@@ -41,9 +41,17 @@ class Welcome extends CI_Controller {
 		$re = $this->Model_p->Admin_login($username, $password);
 		if ($re) {
 			$this->session->set_userdata('ci_session', $re);
-			$this->load->view('dash');
+			$this->load->view('index');
 		} else {
 			$this->load->view('Login');
+		}
+	}
+	public function Admin_profile()
+	{
+		if ($this->session->userdata('ci_session')) {
+			$this->load->view('profile');
+		} else {
+			$this->load->view('start');
 		}
 	}
 	public function fp()
